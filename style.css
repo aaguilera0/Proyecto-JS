@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #569cda;
+    margin-bottom: 3%;
+}
+header h1 {
+    margin-left: 2%;
+}
+
+body {
+    background-color: #9face9;
+}
+
+main .datosTitulo {
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+
+main .datosIngreso {
+    margin-bottom: 3%;
+    margin-left: 2%;
+}
+
+main .tituloCatalogo {
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+
+main .catalogo {
+    margin-left: 2%;
+    margin-left: 6%;
+}
+
+
+
