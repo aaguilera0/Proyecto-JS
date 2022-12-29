@@ -12,11 +12,11 @@
 }
 
 .colorBoton {
-    color: white;
-    background-color: #85bb65;
+    color: black;
+    background-color: #eedf13;
 }
 
 .colorBoton:hover {
-    background-color: green;
-    color: white;
+    background-color: #eedf13;
+    color: #000000;
 }
