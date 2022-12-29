@@ -1,130 +1,148 @@
-//Inicio de sesion plataforma
-
-const usuarioAutorizado = "usuario1";
-const passwordAutorizada = "123456";
-
-let usuarioIngresado = prompt("Ingresa tu nombre de usuario");
-let passwordIngresada = prompt("Ingresa tu contraseña");
-
-if(usuarioIngresado === usuarioAutorizado && passwordIngresada === passwordIngresada) {
-    alert("Los datos ingresados son correctos, pase señor usuario");
-}else {
-    alert("Los datos ingresados son incorrectos, volá de acá ratonnnn")
-}
- 
-
-//Clase bebidas
-
-class Bebidas {
-    constructor(nombre, marca, precio) {
-        this.nombre = nombre; 
-        this.marca = marca;
+class Producto {
+    constructor(id, nombre, precio, img) {
+        this.id = id;
+        this.nombre = nombre;
         this.precio = precio;
+        this.img = img; 
+        this.cantidad = 1; 
     }
 }
 
-const gaseosa = new Bebidas("gaseosa","Coca Cola", 380);
-const fernet = new Bebidas("fernet", "Branca", 1000);
-const whisky = new Bebidas("whisky","Johnnie Walker", 9000);
-const vodka = new Bebidas("vodka", "Smirnoff", 920);
+const cocaCola = new Producto(1,"Coca Cola", 380, "img/cocaCola.png");
+const fernet = new Producto(2, "Branca", 1000, "img/fernetBranca.png");
+const whisky = new Producto(3,"Johnnie Walker", 9000, "img/whiskyWalker.png");
+const vodka = new Producto(4, "Smirnoff", 920, "img/vodkaSmirnoff.png");
+const fanta = new Producto(5, "Fanta",320, "img/fanta.png");
+const fernandito = new Producto(6, "Fernandito", 230, "img/fernandito.png");
+const vino = new Producto(7, "Trumpeter", 550, "img/vinoTrumpeter.jpg"); 
 
-const arrayBebidas = [];
-
-arrayBebidas.push(gaseosa);
-arrayBebidas.push(fernet);
-arrayBebidas.push(whisky);
-arrayBebidas.push(vodka);
+const productos = [cocaCola, fernet, whisky, vodka, fanta, fernandito, vino];
 
 
+let carrito = []; 
 
-function menu() {
-    alert("¡Bienvenido a AA Bebidas!");
-    let opcion = parseInt(prompt("Ingrese una opción: \n 1) Agregar bebida \n 2) Eliminar bebida \n 3) Modificar bebida \n 4) Recetas de tragos \n 5) Salir"));
-    return opcion;
-}
-
-//Funcion para agregar bebida
-
-function agregarBebida () {
-    let nombre = prompt("Ingrese el nombre de la bebida ");
-    let marca = prompt("Ingrese la marca de la bebida: ");
-    let precio = prompt("Ingrese el precio de la bebida: ");
-    let bebidas = new Bebidas(nombre, marca, precio);
-    arrayBebidas.push(bebidas);
-    console.log(arrayBebidas);
-}
-
-//Funcion para eliminar bebida
-
-function eliminarBebida () {
-    let nombre = prompt("Ingrese el nombre de la bebida: ");
-    let bebidas = arrayBebidas.find(bebidas => bebidas.nombre === nombre);
-    let indice = arrayBebidas.indexOf(bebidas);
-    arrayBebidas.splice(indice, 1);
-    console.log(arrayBebidas);
-}
-
-//Funcion para modificar bebida
-
-function modificarBebida () {   
-    let nombre = parseInt(prompt("Ingrese el nombre de la bebida: "));
-    let bebidas = arrayBebidas.find(bebidas => bebidas.nombre === nombre);
-    let indice = arrayBebidas.indexOf(bebidas);
-    let marca = prompt("Ingrese la marca: ");
-    let precio = prompt("Ingrese el precio de la bebida: ");
-    let bebidaModificada = new Cliente(nombre, marca, precio);
-    arrayBebidas.splice(indice, 1, bebidaModificada);
-    console.log(arrayBebidas);
-}
-
-//Funcion para ver recetas de tragos
-
-function recetasTragos() {
-    let bebidas = prompt("Elija la receta de que bebida quiere ver: caipiroska, margarita, mojito, daiquiri.")
-
-switch(bebidas) {
-    case "caipiroska":
-    console.log("Esta bebida se prepara con vodka, lima, azúcar y hielo picado.");
-    break;
-    case "margarita":
-        console.log("Esta bebida se prepara con tequila, triple seco y lima.");
-    break;
-    case "mojito":
-        console.log("Esta bebida se prepara con hojas de menta, lima, ron blanco, azucar y soda.")
-    break;
-    case "daiquiri":
-        console.log("Esta bebida se prepara con ron blanco, lima, azucar y hielo.");
-    break;
-}
-}
-
-//Funcion para salir
-
-function salir() {
-    alert("Gracias por utilizar AA Bebidas");
+ 
+if(localStorage.getItem("carrito")){
+    carrito = JSON.parse(localStorage.getItem("carrito"));
 }
 
 
-//Ejecucion del programa 
+const contenedorProductos = document.getElementById("contenedorProductos");
 
-let opcion = menu();
-switch (opcion) {
-    case 1:
-        agregarBebida();
-        break;
-    case 2:
-        eliminarBebida();
-        break;
-    case 3:
-        modificarBebida();
-        break;
-    case 4:
-        recetasTragos();
-        break;
-    case 5:
-        salir();
-        break;
-    default:
-        alert("Pusiste cualquier cosa, campeón, fijate bien las opciones");
-        break;
+
+const mostrarProductos = () => {
+    productos.forEach( producto => {
+        const card = document.createElement("div");
+        card.classList.add("col-xl-3", "col-md-6", "col-xs-12");
+        card.innerHTML = `
+                <div class="card">
+                    <img src="${producto.img}" class="card-img-top imgProductos" alt="${producto.nombre}">
+                    <div class= "card-body">
+                        <h5>${producto.nombre}</h5>
+                        <p> ${producto.precio} </p>
+                        <button class="btn colorBoton" id="boton${producto.id}" > Agregar al Carrito </button>
+                    </div>
+                </div>
+                        `
+        contenedorProductos.appendChild(card);
+
+       
+        const boton = document.getElementById(`boton${producto.id}`);
+        boton.addEventListener("click", () => {
+            agregarAlCarrito(producto.id);
+        })
+    })
+}
+
+mostrarProductos();
+
+
+const agregarAlCarrito = (id) => {
+    const productoEnCarrito = carrito.find(producto => producto.id === id);
+    if(productoEnCarrito) {
+        productoEnCarrito.cantidad++;
+    } else {
+        const producto = productos.find(producto => producto.id === id);
+        carrito.push(producto);
+    }
+     
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    calcularTotal();
+}
+
+
+const contenedorCarrito = document.getElementById("contenedorCarrito");
+const verCarrito = document.getElementById("verCarrito")
+
+verCarrito.addEventListener("click", () => {
+    mostrarCarrito();
+})
+
+ 
+const mostrarCarrito = () => {
+    contenedorCarrito.innerHTML = "";
+
+    carrito.forEach(producto => {
+        const card = document.createElement("div");
+        card.classList.add("col-xl-3", "col-md-6", "col-xs-12");
+        card.innerHTML = `
+                <div class="card">
+                    <img src="${producto.img}" class="card-img-top imgProductos" alt="${producto.nombre}">
+                    <div class= "card-body">
+                        <h5>${producto.nombre}</h5>
+                        <p> ${producto.precio} </p>
+                        <p> ${producto.cantidad} </p>
+                        <button class="btn colorBoton" id="eliminar${producto.id}" > Eliminar Producto </button>
+                    </div>
+                </div>
+                        `
+        contenedorCarrito.appendChild(card);
+
+         
+        const boton = document.getElementById(`eliminar${producto.id}`);
+        boton.addEventListener("click", () => {
+            eliminarDelCarrito(producto.id);
+        })
+
+    })
+    calcularTotal();
+}
+
+
+const eliminarDelCarrito = (id) => {
+    const producto = carrito.find(producto => producto.id === id);
+    const indice = carrito.indexOf(producto);
+    carrito.splice(indice, 1);
+    mostrarCarrito();
+
+     
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+
+const vaciarCarrito = document.getElementById("vaciarCarrito");
+
+vaciarCarrito.addEventListener("click", () => {
+    eliminarTodoElCarrito();
+})
+
+
+const eliminarTodoElCarrito = () => {
+    carrito = [];
+    mostrarCarrito();
+
+    
+    localStorage.clear();
+}
+
+
+const total = document.getElementById("total");
+
+const calcularTotal = () => {
+    let totalCompra = 0;
+    carrito.forEach(producto => {
+        totalCompra += producto.precio * producto.cantidad;
+        
+    })
+    total.innerHTML = `Total: $${totalCompra}`;
 }

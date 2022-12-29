@@ -1,40 +1,22 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+.imgProductos {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin-top: 1rem;
 }
 
-header {
-    background-color: #569cda;
-    margin-bottom: 3%;
-}
-header h1 {
-    margin-left: 2%;
+.card {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
 }
 
-body {
-    background-color: #9face9;
+.colorBoton {
+    color: white;
+    background-color: #85bb65;
 }
 
-main .datosTitulo {
-    margin-bottom: 2%;
-    margin-left: 2%;
+.colorBoton:hover {
+    background-color: green;
+    color: white;
 }
-
-main .datosIngreso {
-    margin-bottom: 3%;
-    margin-left: 2%;
-}
-
-main .tituloCatalogo {
-    margin-bottom: 2%;
-    margin-left: 2%;
-}
-
-main .catalogo {
-    margin-left: 2%;
-    margin-left: 6%;
-}
-
-
-
