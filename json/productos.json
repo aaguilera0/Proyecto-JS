@@ -1,0 +1,10 @@
+[
+    {"nombre":"Coca Cola", "precio":380, "id":1},
+    {"nombre":"Fanta", "precio":320, "id":2},
+    {"nombre":"Fernandito", "precio":230, "id":3},
+    {"nombre":"Branca", "precio":1000, "id":4},
+    {"nombre":"Trumpeter", "precio":550, "id":5},
+    {"nombre":"Smirnoff", "precio":920, "id":6},
+    {"nombre":"Johnny Walker", "precio":9000, "id":7}
+]
+

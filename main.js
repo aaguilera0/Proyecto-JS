@@ -146,3 +146,20 @@ const calcularTotal = () => {
     })
     total.innerHTML = `Total: $${totalCompra}`;
 }
+
+
+//LIBRERIA: SWEET ALERT
+
+const preciosMayoristas = document.getElementById("preciosMayoristas");
+
+preciosMayoristas.addEventListener("click", () => {
+    Swal.fire({
+        icon: 'info',
+        title: 'Estimado cliente',
+        text: 'Presione el siguiente link para ver el listado',
+        footer: '<a href="pages/mayorista.html">Listado Mayorista</a>'
+      })
+    })
+
+
+
