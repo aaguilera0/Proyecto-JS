@@ -1,13 +1,13 @@
 //FETCH - RUTA LOCAL
 
 const listado = document.getElementById("listado");
-const listadoProductos = "json/productos.json";
+const listadoProductos = "../json/productos.json";
 
 fetch(listadoProductos)
     .then(respuesta => respuesta.json())
     .then(datos => {
         datos.forEach( producto => {
-            productos.innerHTML += `
+            listado.innerHTML += `
                 <h2>Nombre: ${producto.nombre} </h2>
                 <p> Precio: ${producto.precio} </p>
                 <p> ID: ${producto.id} </p>

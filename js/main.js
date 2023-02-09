@@ -154,12 +154,12 @@ const preciosMayoristas = document.getElementById("preciosMayoristas");
 
 preciosMayoristas.addEventListener("click", () => {
     Swal.fire({
+        title: '<strong>PRECIOS MAYORISTAS</strong>',
         icon: 'info',
-        title: 'Estimado cliente',
-        text: 'Presione el siguiente link para ver el listado',
-        footer: '<a href="pages/mayorista.html">Listado Mayorista</a>'
+        html:
+          'Entra en el siguiente ' +
+          '<a href="../pages/mayorista.html">link</a> ' +
+          'para ver los precios mayoristas',
       })
+
     })
-
-
-
